@@ -1,0 +1,14 @@
+services:
+  backend:
+    container_name: senuto
+    image: backend:latest
+    build:
+      context: ./backend
+    environment:
+      MOST_COMMON_NOUNS_COUNT: 50
+      SIMILARITY_THRESHOLD: 0.5
+
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
