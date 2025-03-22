@@ -24,4 +24,4 @@ RUN python -m spacy download en_core_web_sm
 
 EXPOSE 8000
 
-CMD ["uvicorn", "src.server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.sentiment.server:app", "--host", "0.0.0.0", "--port", "8000"]

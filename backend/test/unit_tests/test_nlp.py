@@ -1,7 +1,7 @@
 from collections import Counter
 import pytest
 from bs4 import BeautifulSoup, Comment
-from src.nlp import (
+from src.sentiment.nlp import (
     has_tag,
     from_body,
     is_token_allowed,
