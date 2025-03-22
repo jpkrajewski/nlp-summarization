@@ -1,6 +1,6 @@
 services:
   backend:
-    container_name: senuto
+    container_name: web
     image: backend:latest
     build:
       context: ./backend

@@ -1,11 +1,13 @@
+import html
 import multiprocessing
 from typing import Dict, List, Tuple
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, PageElement
 from bs4.element import Comment
 from spacy import Language
 from collections import Counter
 from spacy.tokens import Token
-from src.config import settings
+from sentiment.config import config
+from sentiment.profilers import sync_profiler
 
 
 def has_tag(element) -> bool:
@@ -18,12 +20,16 @@ def has_tag(element) -> bool:
         "title",
         "meta",
         "[document]",
+        "noscript",
+        "header",
+        "iframe",
+        "object",
+        "embed",
     ]:
         return False
     if isinstance(element, Comment):
         return False
     if element.string.strip() == "":
-        print(element.string.strip())
         return False
     return True
 
@@ -32,7 +38,8 @@ def from_body(body: str) -> str:
     soup = BeautifulSoup(body, "html.parser")
     texts = soup.find_all(string=True)
     visible_texts = filter(has_tag, texts)
-    return " ".join(t.strip() for t in visible_texts).strip()
+    text = " ".join(t.strip() for t in visible_texts).strip()
+    return html.escape(text)
 
 
 def is_token_allowed(token: Token) -> bool:
@@ -48,25 +55,24 @@ def is_token_allowed(token: Token) -> bool:
     )
     return allowed
 
+
 def process_text(args):
     """Process a single text document to extract nouns."""
     nlp, url, text = args
     doc = nlp(text)
-    
+
     lemma = [word.lemma_.lower() for word in doc if is_token_allowed(word)]
-    print(lemma)
-    
+
     return {
         "url": url,
-        "nouns": dict(
-            Counter(
-                lemma
-            ).most_common(settings.MOST_COMMON_NOUNS_COUNT)
-        ),
+        "nouns": dict(Counter(lemma).most_common(config.MOST_COMMON_NOUNS_COUNT)),
     }
 
 
-def compute(nlp: Language, data: List[Tuple[str, str]]) -> Tuple[Dict, Dict]:
+@sync_profiler
+def compute(
+    nlp: Language, data: List[Tuple[str, str]]
+) -> Tuple[List[Dict], List[Dict]]:
     """Compute pairwise similarities and extract nouns from texts."""
     with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
         nouns = pool.map(process_text, ((nlp, url, text) for url, text in data))

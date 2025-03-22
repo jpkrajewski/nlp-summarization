@@ -1,7 +1,7 @@
 from typing import Dict, List
 from pydantic import BaseModel, HttpUrl
 
-from src.nlp import settings
+from sentiment.config import config
 import logging
 
 logger = logging.getLogger(__name__)
@@ -32,7 +32,5 @@ class SentimentRespone(BaseModel):
 
     def cutoff_similarities(self):
         self.similarities = [
-            sim
-            for sim in self.similarities
-            if sim.score >= settings.SIMILARITY_THRESHOLD
+            sim for sim in self.similarities if sim.score >= config.SIMILARITY_THRESHOLD
         ]

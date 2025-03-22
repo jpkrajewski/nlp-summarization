@@ -1,0 +1,17 @@
+{
+    "urls": [
+        "https://example.com/", 
+        "https://github.com/jpkrajewski/nlp-summarization", 
+        "https://github.com/zhanymkanov/fastapi-best-practices", 
+        "https://training.linuxfoundation.org/training/green-software-for-practitioners-lfc131/", 
+        "https://aws.amazon.com/architecture/?cards-all.sort-by=item.additionalFields.sortDate&cards-all.sort-order=desc&awsf.content-type=*all&awsf.methodology=*all&awsf.tech-category=*all&awsf.industries=*all&awsf.business-category=*all",
+        "https://www.youtube.com/watch?v=T-Xr25rMQ38&ab_channel=GothamGames",
+        "https://en.wikipedia.org/wiki/Wikipedia:Wall_of_text",
+        "https://www.quora.com/Why-do-some-people-write-long-walls-of-text-without-paragraph-breaks",
+        "https://allegro.pl/oferta/mata-tpe-do-cwiczen-fitness-jogi-pilates-duza-antyposlizgowa-sportvida-17147258366?bi_s=ads&bi_m=productlisting:desktop:queryandcategory&bi_c=YzA4MWM1YWMtNDAzYS00NWVjLTgwMDgtMzNlZjYwYjMyYjhlAA&bi_t=ape&referrer=proxy&emission_unit_id=4cd23dd0-4ab2-498b-a601-fec8d7105b89",
+        "https://allegro.pl/uzytkownik/SportvidaStore/trening-fitness-pilki-do-cwiczen-110139?rodzaj=pi%C5%82ka%20lekarska",
+        "https://allegro.pl/oferta/pilka-lekarska-fitness-slam-ball-40kg-crossfit-sportvida-14135004740",
+        "https://www.reddit.com/r/Blogging/comments/1cybhhl/can_i_post_links_to_amazon_products_even_thought/"
+    ],
+    "localization": "en"
+  }

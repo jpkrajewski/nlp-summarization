@@ -1,7 +1,12 @@
 from collections import Counter
 import pytest
 from bs4 import BeautifulSoup, Comment
-from src.nlp import has_tag, from_body, is_token_allowed, process_text  # Adjust import according to your code structure
+from src.nlp import (
+    has_tag,
+    from_body,
+    is_token_allowed,
+    process_text,
+)  # Adjust import according to your code structure
 from spacy.tokens import Token
 from spacy.lang.en import English
 import spacy
@@ -34,7 +39,7 @@ def test_is_token_allowed(language, token_text, expected_result):
 
 def test_process_text(language):
     # Simulate a small NLP model
-    
+
     # Test text and URL
     url = "https://example.com"
     text = "The quick brown fox jumps over the lazy dog."
@@ -51,6 +56,7 @@ def test_process_text(language):
     # Assert that the result contains the URL and nouns
     assert result["url"] == url
     assert result["nouns"] == expected_nouns
+
 
 # Test the has_tag function
 def test_has_tag_with_visible_text():
